@@ -8,7 +8,7 @@ class Application {
     const token = await signOn(config.username, config.password)
     const axiosInstance = axios.create({
       baseURL: 'https://ticktick.com/api/v2/',
-      timeout: 2000,
+      timeout: 5000,
       headers: { Cookie: `t=${token}` }
     })
     const retval = await addTask(axiosInstance, {
@@ -19,4 +19,9 @@ class Application {
   }
 }
 
-(new Application).start()
+try {
+  const app = new Application()
+  app.start()
+} catch (error) {
+  console.log('Error:', error)
+}

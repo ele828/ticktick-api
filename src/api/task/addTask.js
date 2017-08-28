@@ -27,6 +27,5 @@ const defaultTask = {
 
 export default function addTask (axios, task) {
   const taskParams = Object.assign({}, defaultTask, task)
-  console.log('task:', taskParams)
   return axios.post('task', taskParams)
 }
