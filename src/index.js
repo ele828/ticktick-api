@@ -16,7 +16,9 @@ export default class Ticktick {
     this._signOn = signOn(this.axios)
     // Inject api endpoint to ticktick application
     for (const api of Object.keys(apiList)) {
-      this[api] = apiList[api].apply(this, [this.axios])
+      Object.defineProperty(this, api, {
+        value: apiList[api].apply(this, [this.axios])
+      });
     }
   }
 
