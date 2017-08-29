@@ -1,9 +1,8 @@
 import path from 'path'
 import { readFile, writeFile } from '../util/fs'
 
-// POST
-const SIGN_ON_API = 'https://ticktick.com/api/v2/user/signon?wc=true&remember=true'
 const TOKEN_CACHE = 'token.json'
+const SIGN_ON_API = 'user/signon?wc=true&remember=true'
 
 export default function signOn (axios) {
   return async (username, password) => {
