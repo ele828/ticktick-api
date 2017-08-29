@@ -11,6 +11,7 @@ const defaultTask = {
   items: [],
   local: true,
   modifiedTime: (new Date).toISOString(),
+  // 0 1 3 5
   priority: 0,
   progress: 0, 
   projectId: '',
@@ -25,7 +26,9 @@ const defaultTask = {
   title: '',
 }
 
-export default function addTask (axios, task) {
-  const taskParams = Object.assign({}, defaultTask, task)
-  return axios.post('task', taskParams)
+export default function addTask (axios) {
+  return (task) => {
+    const taskParams = Object.assign({}, defaultTask, task)
+    return axios.post('task', taskParams)
+  }
 }
