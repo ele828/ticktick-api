@@ -1,5 +1,4 @@
 import path from 'path'
-import axios from 'axios'
 import { readFile, writeFile } from '../util/fs'
 
 // POST

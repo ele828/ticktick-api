@@ -1,4 +1,3 @@
-import axios from 'axios'
 import ObjectId from '../../util/objectId'
 
 const defaultTask = {
