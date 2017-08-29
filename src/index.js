@@ -13,7 +13,7 @@ export default class Ticktick {
       baseURL: 'https://ticktick.com/api/v2/',
       timeout: config.timeout,
     })
-    this._signOn = signOn(this.axios)
+    this._signOn = signOn(this.axios, this.config.tokenCachePath)
     // Inject api endpoint to ticktick application
     for (const api of Object.keys(apiList)) {
       Object.defineProperty(this, api, {
@@ -27,25 +27,3 @@ export default class Ticktick {
     this.axios.defaults.headers.common['Cookie'] = `t=${token}`;
   }
 }
-
-// Application entrypoint
-async function start () {
-  const _config = {
-    username: config.username,
-    password: config.password,
-    timeout: 5000
-  }
-  try {
-    const ticktick = new Ticktick(_config)
-    await ticktick.signOn()
-    await ticktick.addTask({
-      title: 'test title',
-      projectId: '597d7015e4b0ce3fc8da5094',
-      priority: 5
-    })
-  } catch (error) {
-    console.log('Error:', error)
-  }
-}
-
-start()

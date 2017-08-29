@@ -27,7 +27,15 @@ const defaultTask = {
 
 export default function addTask (axios) {
   return (task) => {
-    const taskParams = Object.assign({}, defaultTask, task)
+    const taskParams = Object.assign(
+      {},
+      defaultTask,
+      {
+        id: ObjectId(),
+        modifiedTime: (new Date).toISOString(),
+      },
+      task
+    )
     return axios.post('task', taskParams)
   }
 }
