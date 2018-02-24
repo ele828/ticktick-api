@@ -10,8 +10,7 @@ const defaultTask = {
   items: [],
   local: true,
   modifiedTime: (new Date).toISOString(),
-  // 0 1 3 5
-  priority: 0,
+  priority: 0,    // 0, 1, 3, 5
   progress: 0, 
   projectId: '',
   remindTime: null,

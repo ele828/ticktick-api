@@ -3,14 +3,17 @@ import config from './config'
 import signOn from './api/signOn'
 import addTask from './api/task/addTask'
 
-// Delegates api endpoint to ticktick
+// Ticktick API endpoint
+const TICKTICK_API = 'https://ticktick.com/api/v2/';
+
+// Delegate api endpoint to ticktick
 const apiList = { addTask }
 
 export default class Ticktick {
   constructor(config) {
     this.config = config
     this.axios = axios.create({
-      baseURL: 'https://ticktick.com/api/v2/',
+      baseURL: TICKTICK_API,
       timeout: config.timeout,
     })
     this._signOn = signOn(this.axios, this.config.tokenCachePath)
@@ -24,6 +27,6 @@ export default class Ticktick {
 
   async signOn() {
     const token = await this._signOn(this.config.username, this.config.password)
-    this.axios.defaults.headers.common['Cookie'] = `t=${token}`;
+    this.axios.defaults.headers.common['Cookie'] = `t=${token}`
   }
 }
